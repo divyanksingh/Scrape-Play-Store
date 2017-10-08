@@ -1,0 +1,14 @@
+
+
+<a onClick="window.history.back();return false;">BACK</a>
+
+{% if result %}
+	    <ul>
+			<img width="50px" src="{{result.icon_url}}"/>
+            <h1>{{ result.app_name }}</h1>
+            <li> <b>Offered by</b> {{ result.developer_name }}</li>
+            <li> <b>Email</b> {{ result.developer_email }}</li>
+	    </ul>
+{% else %}
+	    <p>No result available for this app_id.</p>
+{% endif %}

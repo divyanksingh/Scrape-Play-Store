@@ -1,0 +1,22 @@
+
+
+<form action="{% url 'search' %}">
+  Keyword:
+  <input type="text" name="keyword" >
+  
+  <input type="submit" value="Submit">
+</form> 
+
+
+
+{% if results %}
+	{% if list %}
+	    <ul>
+	    {% for item in list %}
+			<li><a href="{% url 'show' item.app_id %}"><img width="20px" src="{{item.icon_url}}"/>   {{ item.app_name }}</a></li>
+	    {% endfor %}
+	    </ul>
+	{% else %}
+	    <p>No results available.</p>
+	{% endif %}
+{% endif %}
