@@ -12,3 +12,15 @@ The application performs following steps:
 The application uses default port 8000.
 
 'pip install -r requirements.txt' before running the app
+
+The application uses sqlite as database.
+
+Run 'python manage.py makemigrations mysite'
+
+followed by
+
+'python manage.py migrate' to initialize the database
+
+'python manage.py runserver' to run the server
+
+Access http://localhost:8000 in your browser to start using the app
