@@ -13,7 +13,7 @@ def fetch_data(keyword):
         s = Search.objects.get(keyword = keyword)
         result = Result.objects.filter(search__keyword = keyword)[:10]
         return result
-    except Exception as e:
+    except Search.DoesNotExist as e:
         result = []
         s = Search(keyword=keyword)
         s.save()
@@ -39,13 +39,13 @@ def fetch_data(keyword):
                 for tag in email_tags:
                     if tag.get('href').split(':')[0] == "mailto":
                         email = tag.get('href').split(':')[1]
-            except Exception as e:
+            except IndexError as e:
                 print("Error in finding developer email")
             icon_url = app_soup.find(class_="cover-image").get('src')
             try:
                 r = Result.objects.get(app_id =app_id)
                 s.results.add(r)
-            except Exception as e:
+            except Result.DoesNotExist as e:
                 r = Result(app_id = app_id, app_name = app_name, developer_name = developer_name, developer_email = email, icon_url = icon_url)
                 r.save()
                 s.results.add(r)
@@ -57,5 +57,5 @@ def fetch_record(app_id):
     try:
         r = Result.objects.get(app_id=app_id)
         return r
-    except Exception as e:
+    except Result.DoesNotExist as e:
         return False
